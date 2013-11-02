@@ -17,11 +17,10 @@ int main(int argc, char** argv) {
 
   tcp::resolver::query query{argv[1], argv[2]};
 
-  auto endpoint_iterator = resolver.resolve(query);
-
   tcp::socket socket{io_service};
 
   try {
+    auto endpoint_iterator = resolver.resolve(query);
     boost::asio::connect(socket, endpoint_iterator);
   } catch(...) {
     std::cout << "???\n";
